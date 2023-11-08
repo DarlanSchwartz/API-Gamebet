@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - '2022:5432'
+    volumes:
+       - ./src/docker/postgres:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready', '-d', 'db_prod']
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gamebet
+    networks:
+      - private  
+  
+  gamebet-be:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gamebet-be-node:latest
+    ports:
+      - "5000:5000"
+    networks:
+      - private
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/gamebet
+
+networks:
+  private:
+    driver: bridge
