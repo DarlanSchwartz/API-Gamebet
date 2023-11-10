@@ -1,8 +1,6 @@
-# This is a template for a back-end restful API using Typescript
-
 ### It contains the following libraries as default dependencies:
 
-- [pg](https://www.npmjs.com/package/pg)
+- [prisma](https://www.npmjs.com/package/prisma)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [joi](https://www.npmjs.com/package/joi)
 - [@joi/date](https://www.npmjs.com/package/@joi/date)
@@ -23,14 +21,18 @@
 - [@types/express](https://www.npmjs.com/package/@types/express)
 - [@types/node](https://www.npmjs.com/package/@types/node)
 - [@types/pg](https://www.npmjs.com/package/@types/pg)
+- [@types/joi](https://www.npmjs.com/package/@types/joi)
 
 
-### Requirements
+### Requirements to use all that it is to be used
 
 - [postgresSQL](https://www.postgresql.org/)
 - [node.js](https://nodejs.org/en)
+- [docker](https://docker.io/)
 
-## Usage
+# Usage 
+
+### Default
 
 - Development mode -> auto-reloads when a file in the app is modified using nodemon to "watch" modified files.
 
@@ -49,17 +51,34 @@ npm start
 ```bash
 npm run build
 ```
+### Docker
+
+1.  Make sure that the docker service/software is running in your pc.
+
+- Build command
+1. Run when you need to test a new feature at the docker container, this command will rebuilt the container with the latest changes you have made into your code.
+
+```bash
+docker-compose build
+```
+
+- Start command.
+
+```bash
+docker-compose up
+```
+
+- Close command
+
+```bash
+docker-compose down
+```
+
 
 This [env](./.env.example) file contains some field that you have to fill up with the correct data.
 
 ```javascript
-DATABASE_URL=yourbaseurl.something.com
-DATABASE_PASSWORD=123543436
-DATABASE_USER=user
-DATABASE_NAME=databasename
-DATABASE_PORT=5432
-NODE_ENV=development or production
-PORT=5000
+"postgresql://postgres:postgres@localhost:2022/gamebet?schema=public"
 ```
 
 ## This template has some example routes as following:
