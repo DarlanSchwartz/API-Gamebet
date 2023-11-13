@@ -1,31 +1,31 @@
 CREATE TABLE participants (
-    "id" SERIAL PRIMARY KEY NOT NULL,
+    "id" SERIAL PRIMARY KEY NOT NULL UNIQUE,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "name" VARCHAR(255) NOT NULL,
-    "balance" INT NOT NULL
+    "balance" integer NOT NULL
 );
 
 CREATE TABLE games (
-    "id" SERIAL PRIMARY KEY NOT NULL,
+    "id" SERIAL PRIMARY KEY NOT NULL UNIQUE,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "homeTeamName" VARCHAR(255) NOT NULL,
     "awayTeamName" VARCHAR(255) NOT NULL,
-    "homeTeamScore" INT NOT NULL,
-    "awayTeamScore" INT NOT NULL,
-    "isFinished" BOOLEAN NOT NULL
+    "homeTeamScore" integer NOT NULL DEFAULT 0,
+    "awayTeamScore" integer NOT NULL DEFAULT 0,
+    "isFinished" BOOLEAN NOT NULL DEFAULT 'false'
 );
 
 CREATE TABLE bets (
-    "id" SERIAL PRIMARY KEY NOT NULL,
+    "id" SERIAL PRIMARY KEY NOT NULL UNIQUE,
     "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "homeTeamScore" INT NOT NULL,
-    "awayTeamScore" INT NOT NULL,
-    "amountBet" INT NOT NULL,
-    "gameId" INT REFERENCES games(id) NOT NULL,
-    "participantId" INTEGER REFERENCES participants(id) NOT NULL,
+    "homeTeamScore" integer NOT NULL,
+    "awayTeamScore" integer NOT NULL,
+    "amountBet" integer NOT NULL,
+    "gameId" integer REFERENCES games(id) NOT NULL,
+    "participantId" integer REFERENCES participants(id) NOT NULL,
     "status" VARCHAR(255) NOT NULL,
-    "amountWon" INT
+    "amountWon" integer
 );

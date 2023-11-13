@@ -30,9 +30,9 @@ model Game {
   updatedAt     DateTime @default(now()) @db.Timestamp(6)
   homeTeamName  String   @db.VarChar(255)
   awayTeamName  String   @db.VarChar(255)
-  homeTeamScore Int
-  awayTeamScore Int
-  isFinished    Boolean
+  homeTeamScore Int      @default(0)
+  awayTeamScore Int      @default(0)
+  isFinished    Boolean  @default(false)
   bets          Bet[]
 
   @@map("games")

@@ -199,4 +199,4 @@ npm start
 
 - If you have followed along everything will be a sucess and you should see the same as the image below:
 
-<img src="./prints (delete me)/print-deploy-sucess.PNG">
+<img src="./src/imagem.jpg">
