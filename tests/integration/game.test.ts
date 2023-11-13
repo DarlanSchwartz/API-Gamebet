@@ -152,11 +152,10 @@ describe("GET /games", () => {
     });
 });
 
-describe("GET /games/:id", async () => {
+describe("GET /games/:id", () => {
     it("Should return the game of id X", async () => {
         const participant = await createParticipant();
         const game = await createGame(false);
-        console.log(game, "Deu certo");
         await createBet(participant.id, game.id);
         const { body } = await server.get(`/games/${game.id}`)
         expect(body)
