@@ -22,7 +22,7 @@ async function getById(id: number) {
     return result;
 }
 
-async function update(id: number, game: GameFinishDTO) {
+async function finish(id: number, game: GameFinishDTO) {
     const result = await prisma.game.update({
         where: {
             id
@@ -36,5 +36,5 @@ async function update(id: number, game: GameFinishDTO) {
     return result;
 }
 
-const GameRepository = { create, getAll, getById, update };
+const GameRepository = { create, getAll, getById, finish };
 export default GameRepository;

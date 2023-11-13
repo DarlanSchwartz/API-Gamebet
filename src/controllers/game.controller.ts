@@ -21,14 +21,14 @@ async function getById(req: Request, res: Response) {
     return res.send(game);
 }
 
-async function update(req: Request, res: Response) {
+async function finish(req: Request, res: Response) {
     const id = req.params.id;
     if (!id) return res.sendStatus(httpStatus.BAD_REQUEST);
     const game = req.body as GameFinishDTO;
-    const updatedGame = await GameService.update(Number(id), game);
+    const updatedGame = await GameService.finish(Number(id), game);
     return res.send(updatedGame);
 }
 
-const GameController = { create, getAll, getById, update };
+const GameController = { create, getAll, getById, finish };
 
 export default GameController;

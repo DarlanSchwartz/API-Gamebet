@@ -7,5 +7,5 @@ const gameRouter = Router();
 gameRouter.get("/games", GameController.getAll);
 gameRouter.get("/games/:id", GameController.getById);
 gameRouter.post("/games", validateSchema(GameCreationSchema), GameController.create);
-gameRouter.post("/games/:id/finish", validateSchema(GameFinishSchema), GameController.update);
+gameRouter.post("/games/:id/finish", validateSchema(GameFinishSchema), GameController.finish);
 export default gameRouter;
