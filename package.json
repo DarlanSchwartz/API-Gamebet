@@ -20,7 +20,7 @@
     "pull": "npx prisma db pull",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prisma generate",
-    "start": "ts-node-dev src/app.ts",
+    "start": "mpde dist/app.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
