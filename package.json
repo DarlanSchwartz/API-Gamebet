@@ -1,5 +1,5 @@
 {
-  "name": "template-typescript-express-prisma-docker-architecture",
+  "name": "gamebet",
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
