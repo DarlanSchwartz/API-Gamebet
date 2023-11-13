@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "build": "npx prisma generate && tsc && tsc-alias",
+    "build": "tsc -p tsconfig.build.json && tsc-alias",
     "test:migration:run": "npm run test:load-envs prisma migrate deploy",
     "test:migration:generate": "npm run test:load-envs prisma migrate dev",
     "test:watch": "jest --watch --passWithNoTests --runInBand",
@@ -20,7 +20,7 @@
     "pull": "npx prisma db pull",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prisma generate",
-    "start": "node dist/app.ts",
+    "start": "node dist/app.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
