@@ -5,7 +5,18 @@
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc && tsc-alias",
-    "dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/app.ts",
+    "test:migration:run": "npm run test:load-envs prisma migrate deploy",
+    "test:migration:generate": "npm run test:load-envs prisma migrate dev",
+    "test:watch": "jest --watch --passWithNoTests --runInBand",
+    "load:test:env": "dotenv -e .env.test",
+    "test:seed": "npm run test:load-envs prisma db seed",
+    "dev:load-envs": "dotenv -e .env.development",
+    "dev:migration:run": "npm run dev:load-envs prisma migrate deploy",
+    "dev:migration:generate": "npm run dev:load-envs prisma migrate dev",
+    "dev:seed": "npm run dev:load-envs prisma db seed",
+    "dev": "cross-env NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts",
+    "test": "npm run load:test:env jest --runInBand",
+    "test:cov": "npm run load:test:env jest --coverage --runInBand",
     "pull": "npx prisma db pull",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prisma generate",
@@ -16,18 +27,31 @@
   "keywords": [],
   "author": "Darlan Schwartz",
   "license": "ISC",
+  "prisma": {
+    "seed": "npm run dev:load-envs -- ts-node prisma/seed.ts"
+  },
   "dependencies": {
+    "@faker-js/faker": "^8.2.0",
     "@joi/date": "^2.1.0",
     "@prisma/client": "^5.5.2",
     "@types/dotenv": "^8.2.0",
+    "@types/jest": "^29.5.8",
     "@types/joi": "^17.2.3",
+    "@types/supertest": "^2.0.16",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.3.0",
+    "dotenv-expand": "^10.0.0",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "faker": "^6.6.6",
     "http-status": "^1.7.0",
-    "joi": "^17.9.2"
+    "joi": "^17.9.2",
+    "reflect-metadata": "^0.1.13",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.14",
@@ -36,8 +60,8 @@
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.7",
-    "tsconfig-paths": "^4.2.0",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^5.2.2",
-    "typescript-transform-paths": "^3.4.6"
+    "typescript-transform-paths": "^2.2.3"
   }
 }

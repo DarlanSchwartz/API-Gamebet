@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { ErrorType } from "@/protocols/error.types";
 
 export default function ErrorCatcher(error, req: Request, res: Response, next: NextFunction) {
-    console.log(error);
+    //console.log(error);
     switch (error.type) {
         case ErrorType.CONFLICT:
             return res.status(httpStatus.CONFLICT).send("Conflict: " + error.message);

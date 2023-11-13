@@ -10,8 +10,8 @@ async function getAll(req: Request, res: Response) {
 
 async function create(req: Request, res: Response) {
   const participant = req.body as ParticipantCreationDTO;
-  await ParticipantService.create(participant);
-  return res.sendStatus(httpStatus.CREATED);
+  const newParticipant = await ParticipantService.create(participant);
+  return res.status(httpStatus.CREATED).send(newParticipant);
 }
 
 const ParticipantController = { getAll, create };

@@ -8,7 +8,8 @@ async function getAll() {
 }
 
 async function create(participant: ParticipantCreationDTO) {
-  await ParticipantRepository.create(participant);
+  const result = await ParticipantRepository.create(participant);
+  return result;
 }
 
 const ParticipantService = { getAll, create };

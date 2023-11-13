@@ -24,8 +24,8 @@ CREATE TABLE bets (
     "homeTeamScore" integer NOT NULL,
     "awayTeamScore" integer NOT NULL,
     "amountBet" integer NOT NULL,
-    "gameId" integer REFERENCES games(id) NOT NULL,
-    "participantId" integer REFERENCES participants(id) NOT NULL,
+    "gameId" integer REFERENCES games(id) ON DELETE CASCADE NOT NULL,
+    "participantId" integer REFERENCES participants(id) ON DELETE CASCADE NOT NULL,
     "status" VARCHAR(255) NOT NULL,
     "amountWon" integer
 );
