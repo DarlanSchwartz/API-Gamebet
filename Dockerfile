@@ -37,4 +37,4 @@ COPY --chown=node:node --from=builder /usr/src/app/node_modules /usr/src/app/nod
 
 COPY --chown=node:node --from=builder /usr/src/app/ /usr/src/app/
 
-CMD ["node", "dist/app.js"]
+CMD ["node", "dist/server.js"]

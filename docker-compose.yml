@@ -17,6 +17,22 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: gamebet
+    networks:
+      - private  
+  
+  gamebet-be:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gamebet-be-node:latest
+    ports:
+      - "4000:5000"
+    networks:
+      - private
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:2022/gamebet
 networks:
   private:
     driver: bridge
