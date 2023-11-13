@@ -13,10 +13,13 @@ async function getAll() {
     return result;
 }
 
-async function getById(id: number) {
+async function getById(id: number, includeBets = false) {
     const result = await prisma.game.findUnique({
         where: {
             id
+        },
+        include: {
+            bets: includeBets
         }
     });
     return result;
