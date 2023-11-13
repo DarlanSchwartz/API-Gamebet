@@ -14,6 +14,28 @@ async function getAll() {
     return result;
 }
 
-const ParticipantRepository = { create, getAll };
+async function updateMoney(id: number, newBalance: number) {
+    const result = await prisma.participant.update({
+        where: {
+            id
+        },
+        data: {
+            balance: newBalance
+        }
+    });
+    return result;
+
+}
+
+async function getById(id: number) {
+    const result = await prisma.participant.findUnique({
+        where: {
+            id
+        }
+    });
+    return result;
+}
+
+const ParticipantRepository = { create, getAll, getById, updateMoney };
 
 export default ParticipantRepository;

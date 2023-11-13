@@ -11,6 +11,7 @@ async function create(bet: BetCreationDTO) {
             participantId: bet.participantId,
             status: "PENDING"
         }
+
     });
     return result;
 }

@@ -14,4 +14,4 @@ const GameFinishSchema = Joi.object<GameFinishDTO>({
   awayTeamScore: Joi.number().positive().required()
 });
 
-export {GameCreationSchema, GameFinishSchema};
+export { GameCreationSchema, GameFinishSchema };

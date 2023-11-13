@@ -4,7 +4,7 @@ import cors from 'cors';
 import ErrorCatcher from "@/middlewares/errors.middleware";
 import MainRouter from "./routes/index.routes";
 
-const app : Application = express();
+const app: Application = express();
 
 app.use(cors());
 app.use(json());

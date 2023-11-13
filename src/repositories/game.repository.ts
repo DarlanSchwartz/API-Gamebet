@@ -36,5 +36,5 @@ async function update(id: number, game: GameFinishDTO) {
     return result;
 }
 
-const GameRepository = { create, getAll, getById , update};
+const GameRepository = { create, getAll, getById, update };
 export default GameRepository;
