@@ -20,7 +20,7 @@
     "pull": "npx prisma db pull",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prisma generate",
-    "start": "node dist/app.js",
+    "start": "node dist/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
