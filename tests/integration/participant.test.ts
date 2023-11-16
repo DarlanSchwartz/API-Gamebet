@@ -34,20 +34,20 @@ describe('/POST participant', () => {
     })
 
     it('Should return 409 when balance is lower than 10R$ = 1000', async () => {
-        const participant0 = {
-            name: "Luis Arthur",
+        const participant = {
+            name: "Darlan Schwartz",
             balance: 100
         }
-        const res = await server.post("/participants").send(participant0)
+        const res = await server.post("/participants").send(participant)
         expect(res.status).toBe(422)
     })
 
-    it('shold return an participant obeject if the body is correct', async () => {
-        const participant1 = {
-            name: "Luis Arthur",
+    it('Should return an participant if the body is correct', async () => {
+        const participant = {
+            name: "Darlan Schwartz",
             balance: 10000
         }
-        const res = await server.post("/participants").send(participant1)
+        const res = await server.post("/participants").send(participant)
         expect(res.body).toMatchObject<Participant>({
             id: expect.any(Number),
             balance: expect.any(Number),

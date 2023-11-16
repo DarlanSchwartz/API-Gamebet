@@ -15,7 +15,7 @@ beforeEach(async () => {
 
 
 describe('POST /games', () => {
-    it('Should return 422 when body is empity or incorrect', async () => {
+    it('Should return 422 when body is empty or incorrect', async () => {
         const res = await server.post("/games");
         expect(res.status).toBe(422);
     })
@@ -45,12 +45,12 @@ describe('POST /games', () => {
 })
 
 describe("POST /games/:id/finish", () => {
-    it('shold return 422 when body is empity or incorrect', async () => {
+    it('Sould return 422 when body is empty or incorrect', async () => {
         const res = await server.post("/games");
         expect(res.status).toBe(422);
     })
 
-    it("should return a text 'This game alredy  finished' if try to finish in a finished game", async () => {
+    it("Should return a text 'This game alredy finished' if try to finish in a finished game", async () => {
         const game = await createGame(true);
         const newGame = {
             homeTeamScore: 9,
@@ -60,7 +60,7 @@ describe("POST /games/:id/finish", () => {
         expect(res.text).toBe('Bad Request: Game is already finished');
     });
 
-    it("should return a game that  is finished is true and the score is the same that the body", async () => {
+    it("Should return a game that  is finished is true and the score is the same that the body", async () => {
         const game = await createGame(false);
         const secondGame = {
             homeTeamScore: 9,
@@ -82,7 +82,7 @@ describe("POST /games/:id/finish", () => {
         }))?.isFinished).toBe(true);
     });
 
-    it("should the bets that  have the diferent  score be lost and the  amount 0", async () => {
+    it("Should the bets that  have the diferent score be lost and the amount 0", async () => {
         const game = await createGame(false);
         const participant = await createParticipant()
         const secondGame = {
@@ -105,7 +105,7 @@ describe("POST /games/:id/finish", () => {
     });
 
 
-    it("should the bets that  have the same score be WON and the  amount be the equal to the rule", async () => {
+    it("Should the bets that have the same score be WON and the amount be the equal to the rule", async () => {
         const game = await createGame(false);
         const participant = await createParticipant()
         const secondGame = {
