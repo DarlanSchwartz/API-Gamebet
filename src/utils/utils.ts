@@ -14,3 +14,8 @@ export function isWinningBet(game: Pick<Game, "homeTeamScore" | "awayTeamScore">
 
     return result;
 }
+
+export function doesNotContainHTML(value: string) {
+    const htmlRegex = /<[^>]*>/;
+    return !htmlRegex.test(value);
+}
