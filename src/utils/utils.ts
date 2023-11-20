@@ -1,6 +1,6 @@
 import { Bet, Game } from "@prisma/client";
 
-export function isWinningBet(game: Pick<Game, "homeTeamScore" | "awayTeamScore">, bet: Pick<Bet, "awayTeamScore" | "homeTeamScore">) {
+export function isWinningBet(game: Pick<Game, "homeTeamScore" | "awayTeamScore">, bet: Bet) {
     const isPositiveScore = bet.homeTeamScore >= 0 && bet.awayTeamScore >= 0;
 
     const result =

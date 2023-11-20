@@ -1,8 +1,8 @@
 {
   "name": "gamebet",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/app.js",
+  "description": "This is an API for a game betting application",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc -p tsconfig.build.json && tsc-alias",
     "test:migration:run": "npm run test:load-envs prisma migrate deploy",
@@ -60,6 +60,12 @@
     "tsc-alias": "^1.8.7",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^5.2.2",
-    "typescript-transform-paths": "^2.2.4"
+    "typescript-transform-paths": "^2.2.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0"
   }
 }
