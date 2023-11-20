@@ -1,6 +1,5 @@
-import { CustomError, ErrorType } from "@/protocols/error.types";
-import { ParticipantCreationDTO } from "@/protocols/participant.types";
-import ParticipantRepository from "@/repositories/participant.repository";
+import { ParticipantCreationDTO } from '@/protocols/participant.types';
+import ParticipantRepository from '@/repositories/participant.repository';
 
 async function getAll() {
   const participants = await ParticipantRepository.getAll();

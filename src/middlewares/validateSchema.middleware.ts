@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import { Schema } from "joi";
-import { CustomError, ErrorType } from "@/protocols/error.types";
+import { Request, Response, NextFunction } from 'express';
+import { Schema } from 'joi';
+import { CustomError, ErrorType } from '@/protocols/error.types';
 
 export default function validateSchema(schema: Schema) {
   return (req: Request, res: Response, next: NextFunction) => {

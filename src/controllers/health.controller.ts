@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
 async function getHealth(req: Request, res: Response) {
-    return res.send("I'm ok!");
+  return res.send("I'm ok!");
 }
 const HealthController = { getHealth };
 export default HealthController;

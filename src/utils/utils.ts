@@ -1,21 +1,18 @@
-import { Bet, Game } from "@prisma/client";
+import { Bet, Game } from '@prisma/client';
 
-export function isWinningBet(game: Pick<Game, "homeTeamScore" | "awayTeamScore">, bet: Bet) {
-    const isPositiveScore = bet.homeTeamScore >= 0 && bet.awayTeamScore >= 0;
+export function isWinningBet(game: Pick<Game, 'homeTeamScore' | 'awayTeamScore'>, bet: Bet) {
+  const isPositiveScore = bet.homeTeamScore >= 0 && bet.awayTeamScore >= 0;
 
-    const result =
-        isPositiveScore &&
-        ((game.homeTeamScore > game.awayTeamScore &&
-            bet.homeTeamScore > bet.awayTeamScore) ||
-        (game.homeTeamScore < game.awayTeamScore &&
-            bet.homeTeamScore < bet.awayTeamScore) ||
-        (game.homeTeamScore === game.awayTeamScore &&
-            bet.homeTeamScore === bet.awayTeamScore));
+  const result =
+    isPositiveScore &&
+    ((game.homeTeamScore > game.awayTeamScore && bet.homeTeamScore > bet.awayTeamScore) ||
+      (game.homeTeamScore < game.awayTeamScore && bet.homeTeamScore < bet.awayTeamScore) ||
+      (game.homeTeamScore === game.awayTeamScore && bet.homeTeamScore === bet.awayTeamScore));
 
-    return result;
+  return result;
 }
 
 export function doesNotContainHTML(value: string) {
-    const htmlRegex = /<[^>]*>/;
-    return !htmlRegex.test(value);
+  const htmlRegex = /<[^>]*>/;
+  return !htmlRegex.test(value);
 }

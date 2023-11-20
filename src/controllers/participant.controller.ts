@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import ParticipantService from "@/services/participant.service";
-import { ParticipantCreationDTO } from "@/protocols/participant.types";
-import httpStatus from "http-status";
+import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import ParticipantService from '@/services/participant.service';
+import { ParticipantCreationDTO } from '@/protocols/participant.types';
 
 async function getAll(req: Request, res: Response) {
   const participants = await ParticipantService.getAll();

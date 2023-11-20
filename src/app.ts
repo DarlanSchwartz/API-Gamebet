@@ -1,14 +1,14 @@
 import 'reflect-metadata';
-import express, { json } from "express";
-import "express-async-errors";
+import express, { json } from 'express';
+import 'express-async-errors';
 import cors from 'cors';
-import ErrorCatcher from "@/middlewares/errors.middleware";
-import MainRouter from "./routes/index.routes";
-import { loadEnv } from './config/envs';
 import helmet from 'helmet';
+import MainRouter from './routes/index.routes';
+import { loadEnv } from './config/envs';
+import ErrorCatcher from '@/middlewares/errors.middleware';
 
 loadEnv();
-const app= express();
+const app = express();
 
 app.use(helmet());
 app.use(cors());
