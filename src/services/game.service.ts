@@ -28,10 +28,11 @@ async function finish(id: number, game: GameFinishDTO) {
     const result = await GameRepository.finish(id, game);
     const winningBets = currentGame.bets.filter((bet) => isWinningBet(game, bet));
     const totalWinningAmount = winningBets.reduce((total, bet) => total + bet.amountBet, 0);
+    const totalValueOfBets = currentGame.bets.reduce((total, bet) => total + bet.amountBet, 0);
     const betResolves: BetResolve[] = currentGame.bets.map((bet) => {
         const isWinner = isWinningBet(game, bet);
-        const wonAmount = isWinner ? Math.floor((bet.amountBet / totalWinningAmount) * totalWinningAmount * 0.7) : 0;
-        const betResolve: BetResolve = { betId: bet.id, amountWon: wonAmount, isWinner: isWinner };
+        const amountWon = isWinner ? Math.floor((bet.amountBet / totalWinningAmount) * totalValueOfBets * 0.7) : 0;
+        const betResolve: BetResolve = { betId: bet.id, amountWon, isWinner };
         return betResolve;
     });
     await BetRepository.updateWinnersAndLosers(betResolves);
