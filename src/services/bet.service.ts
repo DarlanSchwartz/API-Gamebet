@@ -22,8 +22,9 @@ async function create(bet: BetCreationDTO) {
   if (game.isFinished) {
     throw new CustomError(ErrorType.BAD_REQUEST, 'Game is finished');
   }
-  const newBet = await BetRepository.create(bet);
-  await ParticipantRepository.updateMoney(bet.participantId, participant.balance - bet.amountBet);
+  const newBetPromise = BetRepository.create(bet);
+  const participantPromise = ParticipantRepository.updateMoney(bet.participantId, participant.balance - bet.amountBet);
+  const [newBet, finalParcipant] = await Promise.all([newBetPromise, participantPromise]);
   return newBet;
 }
 const BetService = { create };
