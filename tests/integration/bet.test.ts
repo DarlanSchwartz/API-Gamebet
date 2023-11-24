@@ -119,9 +119,7 @@ describe('POST /bets', () => {
       status: expect.any(String),
       amountWon: null,
     });
-    const participantAmountAfterBet = Number(
-      (await prisma.participant.findFirst({ where: { id: participant.id } }))?.balance,
-    );
+    const participantAmountAfterBet = Number((await prisma.participant.findFirst({ where: { id: participant.id } }))?.balance);
     expect(participantAmountAfterBet).toBe(participant.balance - newBet.amountBet);
   });
 });

@@ -36,11 +36,8 @@ describe('POST /games', () => {
       awayTeamScore: expect.any(Number),
       isFinished: expect.any(Boolean),
     });
-    expect(
-      await prisma.game.findFirst({
-        where: { id: res.body.id },
-      }),
-    ).toMatchObject({
+    const foundGame = await prisma.game.findFirst({ where: { id: res.body.id }, });
+    expect(foundGame).toMatchObject({
       id: res.body.id,
     });
   });
@@ -74,28 +71,23 @@ describe('POST /games/:id/finish', () => {
 
   it('Should return a game that  is finished is true and the score is the same that the body', async () => {
     const game = await createGame(false);
-    const secondGame = {
+    const createdGame = {
       homeTeamScore: 9,
       awayTeamScore: 9,
     };
-    const res = await server.post(`/games/${game.id}/finish`).send(secondGame);
+    const res = await server.post(`/games/${game.id}/finish`).send(createdGame);
     expect(res.body).toMatchObject<Game>({
       id: expect.any(Number),
       createdAt: expect.any(String),
       updatedAt: expect.any(String),
       homeTeamName: expect.any(String),
       awayTeamName: expect.any(String),
-      homeTeamScore: secondGame.homeTeamScore,
-      awayTeamScore: secondGame.awayTeamScore,
+      homeTeamScore: createdGame.homeTeamScore,
+      awayTeamScore: createdGame.awayTeamScore,
       isFinished: true,
     });
-    expect(
-      (
-        await prisma.game.findFirst({
-          where: { id: game.id },
-        })
-      )?.isFinished,
-    ).toBe(true);
+    const foundGame = await prisma.game.findFirst({ where: { id: game.id } });
+    expect(foundGame?.isFinished).toBe(true);
   });
 
   it('Should the bets that  have the diferent score be lost and the amount 0', async () => {
@@ -112,20 +104,12 @@ describe('POST /games/:id/finish', () => {
     const bet = await createBet(participant.id, game.id, betParams);
 
     await server.post(`/games/${game.id}/finish`).send(secondGame);
-    expect(
-      (
-        await prisma.bet.findFirst({
-          where: { id: bet.id },
-        })
-      )?.status,
-    ).toBe('LOST');
-    expect(
-      (
-        await prisma.bet.findFirst({
-          where: { id: bet.id },
-        })
-      )?.amountWon,
-    ).toBe(0);
+    const foundBet = await prisma.bet.findFirst({
+      where: { id: bet.id },
+    });
+
+    expect(foundBet?.status,).toBe('LOST');
+    expect(foundBet?.amountWon).toBe(0);
   });
 
   it('Should the bets that have the same score be WON and the amount be the equal to the rule', async () => {
@@ -147,20 +131,9 @@ describe('POST /games/:id/finish', () => {
       gameId: game.id,
     });
     await server.post(`/games/${game.id}/finish`).send(secondGame);
-    expect(
-      (
-        await prisma.bet.findFirst({
-          where: { id: bet.id },
-        })
-      )?.status,
-    ).toBe('WON');
-    expect(
-      (
-        await prisma.bet.findFirst({
-          where: { id: bet.id },
-        })
-      )?.amountWon,
-    ).toBe((bet.amountBet / Number(betsData.wonBets)) * Number(betsData.bets) * 0.7);
+    const foundBet = await prisma.bet.findFirst({ where: { id: bet.id }, });
+    expect(foundBet?.status).toBe('WON');
+    expect(foundBet?.amountWon).toBe((bet.amountBet / Number(betsData.wonBets)) * Number(betsData.bets) * 0.7);
   });
 });
 

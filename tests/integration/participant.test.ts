@@ -54,12 +54,9 @@ describe('/POST participant', () => {
       name: expect.any(String),
       updatedAt: expect.any(String),
     });
-    expect(
-      await prisma.participant.findFirst({
-        where: { id: res.body.id },
-      }),
-    ).toMatchObject({
-      id: res.body.id,
+    const foundParticipant = await prisma.participant.findFirst({
+      where: { id: res.body.id },
     });
+    expect(foundParticipant).toMatchObject({ id: res.body.id, });
   });
 });

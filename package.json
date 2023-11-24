@@ -16,7 +16,7 @@
     "dev:seed": "npm run dev:load-envs prisma db seed",
     "dev": "cross-env NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node -r tsconfig-paths/register ./src/server.ts' -e ts",
     "test": "dotenv -e .env.test jest -- -i",
-    "test:cov": "npm run load:test:env jest -- --coverage --runInBand -i",
+    "test:cov": "dotenv -e .env.test jest -- --coverage -i",
     "pull": "npx prisma db pull",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prisma generate",
